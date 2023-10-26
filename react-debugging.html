@@ -25,70 +25,82 @@
     <div id="react-container"></div>
 
     <script type="text/babel">
-
       // file: src/App.js
-      const { useState } = React
+      const { useState } = React;
 
       const App = () => {
-
-        const suit = ["❤️", "♦️", "♠️", "♣️"]
-        const rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
-        const [hand, setHand] = useState([])
+        const suit = ["❤️", "♦️", "♠️", "♣️"];
+        const rank = [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "J",
+          "Q",
+          "K",
+          "A",
+        ];
+        const [hand, setHand] = useState([]);
 
         const drawCard = () => {
-          const draw = `${rank[Math.floor(Math.random() * rank.length)]} ${suit[Math.floor(Math.random() * suit.length)]}`
-          if(hand.indexOf(draw) === -1) {
-            setHand([...hand, draw])
-          } else if(hand.length !== 52) {
-            drawCard()
+          const draw = `${rank[Math.floor(Math.random() * rank.length)]} ${
+            suit[Math.floor(Math.random() * suit.length)]
+          }`;
+          if (hand.indexOf(draw) === -1) {
+            setHand([...hand, draw]);
+          } else if (hand.length !== 52) {
+            drawCard();
           } else {
-            alert("All cards have been dealt.")
+            alert("All cards have been dealt.");
           }
-        }
+        };
 
         const shuffle = () => {
-          setHand([])
-        }
+          setHand([]);
+        };
 
         const handStyles = {
           display: "flex",
           flexDirection: "row",
-          flexWrap: "wrap"
-        }
+          flexWrap: "wrap",
+        };
         const cardStyles = {
           border: "1px solid black",
           width: "70px",
           height: "95px",
           margin: "10px",
-          padding: "10px"
-        }
+          padding: "10px",
+        };
         // No need to change anything ABOVE this line ^
 
         return (
-          <h1>Draw a Card</h1>
-          <button onClick={}>
-            Click to Draw a Card
-          </button>
-          <button onclick={shuffle}>
-            Return Cards and Shuffle Deck
-          </button>
-          <div style={handStyles}>
-            {hand.map((card, index) => {
-              return (
-                <div style={cardStyles} key={index}>
-                  {card}
-                </div>
-              )
-            })}
-          </div>
-        )
-      }
+          <>
+            <h1>Draw a Card</h1>
+            <button onClick={drawCard}>Click to Draw a Card</button>
+            <button onClick={shuffle}>Return Cards and Shuffle Deck</button>
+            <div style={handStyles}>
+              {hand.map((card, index) => {
+                return (
+                  <div style={cardStyles} key={index}>
+                    {card}
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        );
+      };
 
       // No need to change anything below this line
 
-      const domContainer = document.querySelector('#react-container')
-      const root = ReactDOM.createRoot(domContainer)
-      root.render(<App />)
+      const domContainer = document.querySelector("#react-container");
+      const root = ReactDOM.createRoot(domContainer);
+      root.render(<App />);
     </script>
   </body>
 </html>
